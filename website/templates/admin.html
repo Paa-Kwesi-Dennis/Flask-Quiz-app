@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}
+Admin Home
+{% endblock %}
+{% block content %}
+
+<div class="container">
+	<h1> {{ user.first_name }}'s is now Admin</h1>
+	<br>
+	{% for admin in admins %}
+		<p>{{admin.first_name}}</p>
+	{% endfor %}
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<button class="btn btn-primary" type="button">Create Test</button>
+	<form method="POST">
+		<br>
+		<input name="test_name" id="test_name" class="form-control" placeholder="Test Name" />
+		<br />
+		<div align="center">
+			<input name="question" id="question" class="form-control"
+			placeholder="What is the Biggest Country in the world?" />
+			<br>
+			<button class="btn btn-primary" type="button">Add Question</button>
+		</div>
+	</form>
+	<br>
+	<a href="/admin_logout" class="btn btn-primary">Logout</a>
+</div>
+
+{% endblock %}
