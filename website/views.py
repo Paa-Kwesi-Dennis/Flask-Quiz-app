@@ -18,6 +18,22 @@ def home():
         logout_user()
         return redirect(url_for('auth.login'))
     questions = Question.query.all()
+
     return render_template('home.html', user=current_user, questions=questions)
 
+@views.route('/question/<id>', methods=['GET', 'POST'])
+@login_required
+def question(id):
+    question = Question.query.filter_by(id=id).first()
+    user = User.query.filter_by(id=current_user.id).first()
+    if request.method == 'POST':
+        answer = request.form.get('options')
+        if answer == question.answer:
+            flash('Correct answer', category='success')
+            user.score+=1
+            db.session.commit()
+            return redirect(url_for('views.home'))
+        else:
+            flash('Wrong answer', category='error')
+    return render_template('question.html', question=question, user=current_user)
 

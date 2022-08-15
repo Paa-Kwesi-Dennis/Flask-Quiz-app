@@ -78,7 +78,7 @@ def signup():
             flash('Password must be at least 7 characters.', category='error')
         else:
             if session['account_type'] == 'user':
-                new_user = User(email=email, password=generate_password_hash(password1, method='sha256'), first_name=first_name)
+                new_user = User(email=email, password=generate_password_hash(password1, method='sha256'), first_name=first_name, score=0)
                 db.session.add(new_user)
                 db.session.commit()
                 flash("Account Created", category='success')
