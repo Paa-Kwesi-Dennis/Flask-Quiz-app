@@ -2,4 +2,23 @@
 {% block title %}Home{% endblock %}
 {% block content %}
 <h2> {{user.first_name}}'s Home</h2>
+
+<h4 align="center">Questions</h4>
+{% for question in questions %}
+<li class="list-group-item">
+    <p class="text-muted">Author: {{question.author}}</p>
+    {{ question.text }}
+    <div class="mt-4">
+        <label for="true" class="form-label">True</label>
+        <input type="radio" name="options" id="true" value="true" style="margin-right: 10rem; width: 20px; height: 20px;" />
+        
+        <label for="false" class="form-label">False</label>
+        <input type="radio" name="options" id="false" value="false" style="width: 20px; height: 20px;" />
+        <br>
+        <button type="submit" class="btn btn-success">Answer</button>
+    </div>
+    
+</li>
+<br>
+{% endfor %}
 {% endblock %}

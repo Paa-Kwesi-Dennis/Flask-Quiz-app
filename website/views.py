@@ -2,7 +2,7 @@ from flask import Blueprint, render_template, request, flash, jsonify, redirect,
 from flask_login import current_user, login_required, logout_user
 from .import db
 import json
-from .models import User
+from .models import User, Question
 
 
 
@@ -17,6 +17,7 @@ def home():
         flash('You are not an admin')
         logout_user()
         return redirect(url_for('auth.login'))
-    return render_template('home.html', user=current_user)
+    questions = Question.query.all()
+    return render_template('home.html', user=current_user, questions=questions)
 
 
