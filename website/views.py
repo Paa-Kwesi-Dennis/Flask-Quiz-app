@@ -26,7 +26,9 @@ def home():
 def question(id):
     question = Question.query.filter_by(id=id).first()
     user = User.query.filter_by(id=current_user.id).first()
+    # questions_answered = Question.query.filter_by(user_id=current_user.id)
     if request.method == 'POST':
+        user.questions_answered
         answer = request.form.get('options')
         if answer == question.answer:
             flash('Correct answer', category='success')
